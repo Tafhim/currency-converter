@@ -16,10 +16,10 @@ environments:
 
     development:
         adapter: mysql
-        host: localhost
-        name: development_db
-        user: root
-        pass: ''
+        host: zend-cconvert-mariadb
+        name: zend_project
+        user: zend_project
+        pass: zend_project
         port: 3306
         charset: utf8
 
