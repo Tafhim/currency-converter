@@ -10,7 +10,8 @@ class IndexController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        // action body
+        $rates = new Application_Model_RateMapper();
+        $this->view->rates = $rates->fetchAll();
     }
 
 

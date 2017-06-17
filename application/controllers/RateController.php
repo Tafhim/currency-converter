@@ -5,7 +5,9 @@ class RateController extends Zend_Controller_Action
 
     public function init()
     {
-        /* Initialize action controller here */
+        $ajaxContext = $this->_helper->getHelper('AjaxContext');
+        $ajaxContext->addActionContext('convert', 'json')
+                    ->initContext();
     }
 
     public function indexAction()
@@ -13,6 +15,13 @@ class RateController extends Zend_Controller_Action
         // action body
     }
 
+    public function convertAction()
+    {
+        $this->view->data = array('data', 'data1', 'data2');
+    }
+
 
 }
+
+
 

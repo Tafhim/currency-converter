@@ -16,6 +16,7 @@
         </controllerFile>
         <controllerFile controllerName="Rate">
           <actionMethod actionName="index"/>
+          <actionMethod actionName="convert"/>
         </controllerFile>
       </controllersDirectory>
       <formsDirectory enabled="false"/>
@@ -49,6 +50,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Rate">
             <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Rate">
+            <viewScriptFile forActionName="convert"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

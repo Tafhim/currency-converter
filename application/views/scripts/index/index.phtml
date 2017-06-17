@@ -27,12 +27,19 @@
         height: 100%;
     }
 </style>
+
 <div class="container">
     <form method="post">
     <input type="text" name="convert_from"/>
     <select name="from_currency">
+        <?php foreach( $this->rates as $rate ) { ?>
+            <option value="<?php echo $rate->getCode(); ?>"><?php echo $rate->getCode(); ?></option>
+        <?php } ?>
     </select>
     <select name="to_currency">
+        <?php foreach( $this->rates as $rate ) { ?>
+            <option value="<?php echo $rate->getCode(); ?>"><?php echo $rate->getCode(); ?></option>
+        <?php } ?>
     </select>
     <input type="text" name="convert_to"/>
     <input type="submit"/>
@@ -44,7 +51,7 @@
         $(document).ready(function($) {
             // Call the api for currenty rates
             $.get({
-                url: 'http://api.fixer.io/latest?base=USD',
+                url: 'rate/convert/format/json',
                 success: function(response) {
                     console.log( response );
                 }
