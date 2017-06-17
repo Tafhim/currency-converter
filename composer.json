@@ -1,0 +1,15 @@
+{
+    "name": "tafhim/cconvert",
+    "description": "A currency converter app",
+    "type": "project",
+    "require": {
+        "zendframework/zendframework1": "1.12.20",
+        "robmorgan/phinx": "^0.8.1"
+    },
+    "authors": [
+        {
+            "name": "Tafhim Ul Islam",
+            "email": "tafhim.ul.islam@gmail.com"
+        }
+    ]
+}
