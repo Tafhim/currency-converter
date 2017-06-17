@@ -53,7 +53,8 @@ class SeedRates extends AbstractSeed
         foreach($rates as $code => $rate) {
             $data[] = array(
                 'code' => $code,
-                'rate' => $rate
+                'rate' => $rate,
+                'created' => date('Y-m-d H:i:s')
             );
         }
 
