@@ -2,6 +2,7 @@
 
 class Application_Model_Rate
 {
+    protected $_id;
     protected $_code;
     protected $_created;
     protected $_rate;
