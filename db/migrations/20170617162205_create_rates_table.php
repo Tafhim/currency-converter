@@ -2,7 +2,7 @@
 
 use Phinx\Migration\AbstractMigration;
 
-class CreateHistoryTable extends AbstractMigration
+class CreateRatesTable extends AbstractMigration
 {
     /**
      * Change Method.
@@ -27,13 +27,11 @@ class CreateHistoryTable extends AbstractMigration
      */
     public function change()
     {
-        $history = $this->table('history');
-        $history->addIndex('id', 'integer')
-                ->addColumn('from', 'char')
-                ->addColumn('to', 'char')
-                ->addColumn('from_amount', 'text')
-                ->addColumn('to_amount', 'text')
-                ->addColumn('created', 'datetime')
-                ->create();
+        $rates = $this->table('rates');
+        $rates->addIndex('id', 'integer')
+              ->addColumn('code', 'text')
+              ->addColumn('rate', 'float')
+              ->create();
     }
+    
 }
