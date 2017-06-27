@@ -29,7 +29,7 @@
 </style>
 
 <div class="container">
-    <form method="post">
+    <form id="currency-converter" method="post">
     <input type="text" name="convert_from"/>
     <select name="from_currency">
         <?php foreach( $this->rates as $rate ) { ?>
@@ -41,7 +41,7 @@
             <option value="<?php echo $rate->getCode(); ?>"><?php echo $rate->getCode(); ?></option>
         <?php } ?>
     </select>
-    <input type="text" name="convert_to"/>
+    <input disabled type="text" name="convert_to"/>
     <input type="submit"/>
     </form>
 </div>
@@ -50,12 +50,32 @@
     (function($) {
         $(document).ready(function($) {
             // Call the api for currenty rates
-            $.get({
-                url: 'rate/convert/format/json',
-                success: function(response) {
-                    console.log( response );
-                }
-            })
+            $(document).on('submit', '#currency-converter', function(evt) {
+                // Stop the default request behavior
+                evt.preventDefault();
+
+                // Get all the form data for ajax 
+                form = 'form#currency-converter';
+                formData = new FormData();
+                formData.append('convert_from', $(form).find('[name="convert_from"]').val());
+                formData.append('from_currency', $(form).find('[name="from_currency"]').val());
+                formData.append('to_currency', $(form).find('[name="to_currency"]').val());
+                
+                // Push an ajax post request with all the data
+                $.post({
+                    url: 'rate/convert/format/json',
+                    dataType: 'json',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(response) {
+                        console.log( response );
+                    }
+                });
+
+                return false;
+
+            });
         });
     })(jQuery);
 </script>

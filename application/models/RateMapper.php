@@ -53,6 +53,14 @@ class Application_Model_RateMapper
              ->setCreated($row->created);
     }
 
+    public function findByCode($code) {
+        $result = $this->getDbTable()->fetchRow(
+            'code = "' . $code . '"'
+        );
+
+        return $result;
+    }
+
     public function fetchAll()
     {
         $resultSet = $this->getDbTable()->fetchAll();

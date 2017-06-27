@@ -15,9 +15,30 @@ class RateController extends Zend_Controller_Action
         // action body
     }
 
+    /**
+     * Convert currency
+     *
+     */
     public function convertAction()
     {
-        $this->view->data = array('data', 'data1', 'data2');
+        // Generate the request fetcher object
+        $request = new Zend_Controller_Request_Http();
+        
+        // Get the request parameters
+        $convert_from = $request->getPost('convert_from');
+        $from_currency = $request->getPost('from_currency');
+        $to_currency = $request->getPost('to_currency');
+
+        // Fetch currency rates
+        $rates = new Application_Model_RateMapper();
+        $from_rate = $rates->findByCode($from_currency)->rate;
+        $to_rate = $rates->findByCode($to_currency)->rate;
+
+        // Calculate the result, first convert to USD, then convert to desired currency
+        $result = ( (float)$convert_from / (float)$from_rate );
+        $result = ( $result * (float)$to_rate );
+
+        $this->view->result = $result;
     }
 
 
