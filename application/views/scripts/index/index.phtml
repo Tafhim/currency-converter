@@ -69,7 +69,8 @@
                     processData: false,
                     contentType: false,
                     success: function(response) {
-                        console.log( response );
+                        console.log( response.result );
+                        $(form).find('[name="convert_to"]').val(response.result);
                     }
                 });
 
