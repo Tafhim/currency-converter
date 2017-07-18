@@ -36,7 +36,7 @@ class RateController extends Zend_Controller_Action
 
         // Calculate the result, first convert to USD, then convert to desired currency
         $result = ( (float)$convert_from / (float)$from_rate );
-        $result = ( $result * (float)$to_rate );
+        $result = round( $result * (float)$to_rate, 6 );
 
         $this->view->result = $result;
     }
