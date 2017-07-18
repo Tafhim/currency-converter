@@ -28,23 +28,9 @@
     }
 </style>
 
-<div class="container">
-    <form id="currency-converter" method="post">
-    <input type="text" name="convert_from"/>
-    <select name="from_currency">
-        <?php foreach( $this->rates as $rate ) { ?>
-            <option value="<?php echo $rate->getCode(); ?>"><?php echo $rate->getCode(); ?></option>
-        <?php } ?>
-    </select>
-    <select name="to_currency">
-        <?php foreach( $this->rates as $rate ) { ?>
-            <option value="<?php echo $rate->getCode(); ?>"><?php echo $rate->getCode(); ?></option>
-        <?php } ?>
-    </select>
-    <input disabled type="text" name="convert_to"/>
-    <input type="submit"/>
-    </form>
-</div>
+
+<?php echo $this->converterForm; ?>
+
 
 <script type="text/javascript">
     (function($) {
