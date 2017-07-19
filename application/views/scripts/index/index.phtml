@@ -29,9 +29,9 @@
 </style>
 
 <?php if ( count($this->history) ) { ?>
-<table>
+<table id="history-table">
     <thead>
-        <th>From</th><th>From currency</th><th>To currency</th><th>To</th>
+        <th>From currency</th><th>From</th><th>To</th><th>To currency</th>
     <thead>
     <tbody>
     <?php foreach ($this->history as $history) { ?>
@@ -59,6 +59,9 @@
                 formData.append('convert_from', $(form).find('[name="convert_from"]').val());
                 formData.append('from_currency', $(form).find('[name="from_currency"]').val());
                 formData.append('to_currency', $(form).find('[name="to_currency"]').val());
+
+                // Table for history
+                table_last_row = 'table#history-table tr:last';
                 
                 // Push an ajax post request with all the data
                 $.post({
@@ -68,13 +71,11 @@
                     processData: false,
                     contentType: false,
                     success: function(response) {
-                        console.log( response.result );
                         $(form).find('[name="convert_to"]').val(response.result);
+                        $(table_last_row).after('<tr><td>'+formData.get('from_currency')+'</td><td>'+formData.get('convert_from')+'</td><td>'+response.result+'</td><td>'+formData.get('to_currency')+'</td></tr>');
                     }
                 });
-
                 return false;
-
             });
         });
     })(jQuery);
