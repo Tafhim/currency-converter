@@ -10,6 +10,12 @@ class IndexController extends Zend_Controller_Action
 
     public function indexAction()
     {
+        // Fetch all history from the DB
+        $history = new Application_Model_HistoryMapper();
+
+        // Build a history list
+        $this->view->history = $history->fetchAll();
+
         // Fetch all rates from the DB
         $rates = new Application_Model_RateMapper();
         

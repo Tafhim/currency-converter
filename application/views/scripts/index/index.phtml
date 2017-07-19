@@ -28,9 +28,22 @@
     }
 </style>
 
+<?php if ( count($this->history) ) { ?>
+<table>
+    <thead>
+        <th>From</th><th>From currency</th><th>To currency</th><th>To</th>
+    <thead>
+    <tbody>
+    <?php foreach ($this->history as $history) { ?>
+        <tr>
+            <td><?php $history->getFrom(); ?></td><td><?php $history->getFromAmount(); ?></td><td><?php $history->getToAmount(); ?></td><td><?php $history->getTo(); ?></td>
+        </tr>
+    <?php } ?>
+    </tbody>
+</table>
+<?php } ?>
 
 <?php echo $this->converterForm; ?>
-
 
 <script type="text/javascript">
     (function($) {
