@@ -8,7 +8,7 @@ class Application_Model_History
     protected $_to;
     protected $_from_amount;
     protected $_to_amount;
-    protected $_created
+    protected $_created;
 
     public function __construct(array $options = null) {
         if (is_array($options)) {

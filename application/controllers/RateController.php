@@ -38,6 +38,15 @@ class RateController extends Zend_Controller_Action
         $result = ( (float)$convert_from / (float)$from_rate );
         $result = round( $result * (float)$to_rate, 6 );
 
+        // Add this conversion to the history
+        $history_entry = new Application_Model_History();
+        $history_entry->setFromAmount($convert_from)
+                    ->setToAmount($result)
+                    ->setFrom($from_currency)
+                    ->setTo($to_currency);
+        $history = new Application_Model_HistoryMapper();
+        $history->save($history_entry);
+
         $this->view->result = $result;
     }
 
