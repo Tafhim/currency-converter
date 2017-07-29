@@ -72,10 +72,11 @@ class Application_Model_HistoryMapper
     public function fetchAll()
     {
         // Find all
-        $resultSet = $this->getDbTable()->fetchAll();
-        $entries   = array();
+        $selection = $this->getDbTable()->select()->order('created ASC')->limit(5,0);
+        $resultSet = $this->getDbTable()->fetchAll($selection);
 
         // Map the result in array
+        $entries   = array();
         foreach ($resultSet as $row) {
             $entry = new Application_Model_History();
             $entry->setId($row->id)

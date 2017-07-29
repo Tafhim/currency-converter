@@ -46,15 +46,16 @@
 <?php echo $this->converterForm; ?>
 
 <script type="text/javascript">
+    var form = 'form#currency-converter';
     (function($) {
         $(document).ready(function($) {
             // Call the api for currenty rates
-            $(document).on('submit', '#currency-converter', function(evt) {
+            $(document).on('submit', form, function(evt) {
                 // Stop the default request behavior
                 evt.preventDefault();
 
                 // Get all the form data for ajax 
-                form = 'form#currency-converter';
+
                 formData = new FormData();
                 formData.append('convert_from', $(form).find('[name="convert_from"]').val());
                 formData.append('from_currency', $(form).find('[name="from_currency"]').val());
