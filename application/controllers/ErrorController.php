@@ -53,6 +53,21 @@ class ErrorController extends Zend_Controller_Action
         return $log;
     }
 
+    public function cliAction()
+    {
+        // Disabling all html
+        $this->_helper->viewRenderer->setNoRender(true);
+        $this->_helper->layout->disableLayout();
+
+        foreach ($this->_getParam('error_handler') as $error) {
+            if ($error instanceof Exception) {
+            print "cli-error: " . $error->getMessage() . "\n";
+            }
+        }
+    }
+
 
 }
+
+
 

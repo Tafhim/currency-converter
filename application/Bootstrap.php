@@ -12,11 +12,13 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     {
         if( PHP_SAPI == 'cli' )
         {
+            require_once 'router/cli.php';
+
             $this->bootstrap( 'FrontController' );
             $front = $this->getResource( 'FrontController' );
             $front->setParam('disableOutputBuffering', true);
-            require_once 'router/cli.php';
-            $front->setRouter( new Application_Router_Cli() );
+            
+            $front->setRouter( new Library_Router_Cli() );
             $front->setRequest( new Zend_Controller_Request_Simple() );
         }
     }

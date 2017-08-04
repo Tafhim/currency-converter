@@ -10,13 +10,16 @@
         <controllerFile controllerName="Index">
           <actionMethod actionName="index"/>
         </controllerFile>
-        <controllerFile controllerName="Error"/>
+        <controllerFile controllerName="Error">
+          <actionMethod actionName="cli"/>
+        </controllerFile>
         <controllerFile controllerName="History">
           <actionMethod actionName="index"/>
         </controllerFile>
         <controllerFile controllerName="Rate">
           <actionMethod actionName="index"/>
           <actionMethod actionName="convert"/>
+          <actionMethod actionName="fetch"/>
         </controllerFile>
       </controllersDirectory>
       <formsDirectory>
@@ -55,6 +58,12 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Rate">
             <viewScriptFile forActionName="convert"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Rate">
+            <viewScriptFile forActionName="fetch"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Error">
+            <viewScriptFile forActionName="cli"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
