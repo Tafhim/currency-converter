@@ -47,5 +47,22 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         }
     }
 
+    protected function _initCache()
+    {
+        $ratesCache = Zend_Cache::factory('File', 'File', 
+        array(
+            'ignore_missing_master_files' => true,
+            'debug_header' => true,
+            'lifetime' => 3600,
+            'master_files' => array('testMasterFile'),
+            'automatic_serialization' => true,
+        ),
+        array(
+            'cache_dir' => '/tmp/'
+        ));
+
+        Zend_Registry::set('RateCache', $ratesCache);
+    }
+
 }
 

@@ -17,13 +17,10 @@ class IndexController extends Zend_Controller_Action
         $this->view->history = $history->fetchAll();
 
         // Fetch all rates from the DB
-        $rates = new Application_Model_RateMapper();
+        $rates = new Application_Model_RateMapper;
         
         // Build a rate option array
-        $rate_options = array();
-        foreach ($rates->fetchAll() as $rate) {
-            $rate_options[$rate->getCode()] = $rate->getCode();
-        }
+        $rate_options = $rates->fetchAll('rates_options');
 
         // Build the form
         $converterForm = new Application_Form_RateConverter();

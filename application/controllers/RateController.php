@@ -29,9 +29,11 @@ class RateController extends Zend_Controller_Action
         $to_currency = $request->getPost('to_currency');
 
         // Fetch currency rates
-        $rates = new Application_Model_RateMapper();
-        $from_rate = $rates->findByCode($from_currency)->rate;
-        $to_rate = $rates->findByCode($to_currency)->rate;
+        $rateMapper = new Application_Model_RateMapper;
+        $rates = $rateMapper->fetchAll('rates_data');
+        
+        $from_rate = $rates[$from_currency];
+        $to_rate = $rates[$to_currency];
 
         // Calculate the result, first convert to USD, then convert to desired currency
         $result = ( (float)$convert_from / (float)$from_rate );
@@ -58,52 +60,13 @@ class RateController extends Zend_Controller_Action
         $this->_helper->viewRenderer->setNoRender(true);
         $this->_helper->layout->disableLayout();
 
-        // Caching instance
-        $cache = Zend_Cache::factory('File', 'File', 
-        array(
-            'ignore_missing_master_files' => true,
-            'debug_header' => true,
-            'lifetime' => 3600,
-            'master_files' => array('testMasterFile'),
-            'automatic_serialization' => true,
-        ),
-        array(
-            'cache_dir' => '/var/www/html/public/rateCache'
-        ));
+        $rates = new Application_Model_RateMapper;
+        $ratesData = $rates->fetchAll();
 
-
-        $rate_cache_id = 'RatesFromAPICache';
-
-        // Check if the cache is fresh enough, if so use it
-        if ( ($cacheRates = $cache->load($rate_cache_id)) === false ) {
-            // No cache available
-            $cacheRates = null;
-
-            // Client for the request
-            $api_request_client = new Zend_Http_Client('http://api.fixer.io/latest');
-            $api_request_client->setParameterGet('base', 'USD');
-            
-            // Send the request
-            $currency_api_response = $api_request_client->request('GET');
-
-            // Decode the response
-            $response = json_decode($currency_api_response->getBody());
-
-            $rates = array();
-            foreach( $response->rates as $currency => $rate ) {
-                $rates[(string)$currency] = (float)$rate;
-            }
-            $rates[$response->base] = (float)1.000;
-
-            // Set the response for caching
-            $cacheRates = $rates;
-
-            $cache->save( $cacheRates );
-
-        }
-
-        return $cacheRates;
-
+        if (PHP_SAPI == 'cli')
+            echo '<pre>' . print_r( $ratesData, true ) . '</pre>';
+        
+        return $ratesData;
     }
 
 
