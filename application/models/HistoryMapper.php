@@ -72,7 +72,7 @@ class Application_Model_HistoryMapper
     public function fetchAll()
     {
         // Find all
-        $selection = $this->getDbTable()->select()->order('created ASC')->limit(5,0);
+        $selection = $this->getDbTable()->select()->order('created DESC')->limit(5,0);
         $resultSet = $this->getDbTable()->fetchAll($selection);
 
         // Map the result in array
@@ -87,7 +87,9 @@ class Application_Model_HistoryMapper
                 ->setCreated($row->created);
             $entries[] = $entry;
         }
-        return $entries;
+
+        // return in reverse order to have the latest entry at the bottom
+        return array_reverse($entries);
     }
 
 }
