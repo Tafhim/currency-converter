@@ -26,24 +26,61 @@
         background-image: url(http://framework.zend.com/images/bkg_body-bottom.gif);
         height: 100%;
     }
+
+    div.main-content {
+        display: table;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+    
+    div.converter-content {
+        display: table-cell;
+        vertical-align: middle;
+        width: 90%;
+    }
+
+    div.history-container {
+        display: block;
+        margin: 0 auto;
+        width: 90%;
+    }
+    table#history-table {
+        text-align: center;
+        width: 30%;
+        margin: 0 35%;
+    }
+
+    div.converter-container {
+        margin: 0 35%;
+        width: 30%;
+    }
+    div.converter-container {
+        
+    }
 </style>
 
-<?php if ( count($this->history) ) { ?>
-<table id="history-table">
-    <thead>
-        <th>From currency</th><th>From</th><th>To</th><th>To currency</th>
-    <thead>
-    <tbody>
-    <?php foreach ($this->history as $history) { ?>
-        <tr>
-            <td><?php echo $history->getFrom(); ?></td><td><?php echo $history->getFromAmount(); ?></td><td><?php echo $history->getToAmount(); ?></td><td><?php echo $history->getTo(); ?></td>
-        </tr>
+<div class="converter-content">
+    <?php if ( count($this->history) ) { ?>
+    <div class="history-container">
+        <table id="history-table">
+            <thead>
+                <th>From currency</th><th>From</th><th>To</th><th>To currency</th>
+            <thead>
+            <tbody>
+            <?php foreach ($this->history as $history) { ?>
+                <tr>
+                    <td><?php echo $history->getFrom(); ?></td><td><?php echo $history->getFromAmount(); ?></td><td><?php echo $history->getToAmount(); ?></td><td><?php echo $history->getTo(); ?></td>
+                </tr>
+            <?php } ?>
+            </tbody>
+        </table>
+    </div>
     <?php } ?>
-    </tbody>
-</table>
-<?php } ?>
-
-<?php echo $this->converterForm; ?>
+    <div class="converter-container">
+        <?php echo $this->converterForm; ?>
+    </div>
+</div>
 
 <script type="text/javascript">
     var form = 'form#currency-converter';
@@ -73,6 +110,7 @@
                     contentType: false,
                     success: function(response) {
                         $(form).find('[name="convert_to"]').val(response.result);
+                        $('table#history-table tr:nth-child(5)').siblings('tr:first-child').remove();
                         $(table_last_row).after('<tr><td>'+formData.get('from_currency')+'</td><td>'+formData.get('convert_from')+'</td><td>'+response.result+'</td><td>'+formData.get('to_currency')+'</td></tr>');
                     }
                 });
