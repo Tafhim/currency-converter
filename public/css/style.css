@@ -1,0 +1,105 @@
+/*
+    Import fonts
+*/
+@import url('https://fonts.googleapis.com/css?family=PT+Sans|Source+Sans+Pro');
+
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+a:link,
+a:visited
+{
+    color: #0398CA;
+}
+
+span#zf-name
+{
+    color: #91BE3F;
+}
+
+div#welcome
+{
+    color: #FFFFFF;
+    background-image: url(http://framework.zend.com/images/bkg_header.jpg);
+    width:  100%;
+    height: 100%;
+    border: 2px solid #444444;
+    overflow: hidden;
+    text-align: center;
+}
+
+div#more-information
+{
+    background-image: url(http://framework.zend.com/images/bkg_body-bottom.gif);
+    height: 100%;
+}
+
+div.main-content {
+    display: table;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+div.converter-content {
+    display: table-cell;
+    vertical-align: middle;
+    width: 90%;
+}
+
+div.history-container {
+    display: block;
+    margin: 0 auto;
+    width: 90%;
+}
+table#history-table {
+    text-align: center;
+    width: 60%;
+    max-width: 1024px;
+    margin: 0 auto;
+}
+
+table#history-table td:first-child, table#history-table th:first-child {
+    text-align: left;
+    margin-left: 10%
+}
+
+table#history-table td:last-child, table#history-table th:last-child {
+    text-align: right;
+    margin-right: 10%;
+}
+
+div.converter-container {
+    width: 60%;
+    max-width: 1024px;
+    margin: 0 auto;
+}
+div.converter-container form dl > dt {
+    display: none;
+} 
+div.converter-container form {
+    text-align: center;
+}
+div.converter-container form dl > * {
+    display: inline-block;
+}
+div.converter-container form dd {
+    margin: 0 0;
+}
+/* Set the input field widths so that they fit at the center */
+div.converter-container form dd:nth-child(4), div.converter-container form dd:nth-child(6) {
+    width: 30%;
+    margin: 0 5px;
+}
+div.converter-container form dd:nth-child(4) input, div.converter-container form dd:nth-child(6) input {
+    width: 100%;
+}
+div.converter-container form dd:nth-child(2) {
+    width: 15%;
+    text-align: left;
+} 
+div.converter-container form dd:nth-child(8) {
+    width: 15%;
+    text-align: right;
+}
