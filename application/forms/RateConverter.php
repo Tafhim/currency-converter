@@ -17,7 +17,7 @@ class Application_Form_RateConverter extends Zend_Form
         $toCurrency = new Zend_Form_Element_Select('to_currency');
         $convertToValue = new Zend_Form_Element_Text('convert_to');
         $convertToValue->setAttrib('disabled', "disabled");
-        $submitButton = new Zend_Form_Element_Submit('Submit');
+        $submitButton = new Zend_Form_Element_Submit('Convert');
         $swapButton = new Zend_Form_Element_Button('Swap');
         $swapButton->setAttrib('id', 'converter-swap');
 
