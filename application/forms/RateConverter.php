@@ -18,6 +18,8 @@ class Application_Form_RateConverter extends Zend_Form
         $convertToValue = new Zend_Form_Element_Text('convert_to');
         $convertToValue->setAttrib('disabled', "disabled");
         $submitButton = new Zend_Form_Element_Submit('Submit');
+        $swapButton = new Zend_Form_Element_Button('Swap');
+        $swapButton->setAttrib('id', 'converter-swap');
 
         // Add all the elements to the form
         $this->addElement($fromCurrency);
@@ -25,6 +27,7 @@ class Application_Form_RateConverter extends Zend_Form
         $this->addElement($convertToValue);
         $this->addElement($toCurrency);
         $this->addElement($submitButton);
+        $this->addElement($swapButton);
     }
 
 
