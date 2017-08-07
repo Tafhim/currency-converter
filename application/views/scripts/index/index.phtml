@@ -162,6 +162,17 @@
                 });
                 return false;
             });
+
+            // Swap the currencies
+            $(document).on('click', '#converter-swap', function(evt) {
+                // Get the selections
+                $from_currency = $(form).find('[name="from_currency"]').val();
+                $to_currency = $(form).find('[name="to_currency"]').val();
+
+                // Swap the selections
+                $(form).find('[name="from_currency"]').val($to_currency);
+                $(form).find('[name="to_currency"]').val($from_currency);
+            });
         });
     })(jQuery);
 </script>
