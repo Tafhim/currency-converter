@@ -138,7 +138,6 @@
                 evt.preventDefault();
 
                 // Get all the form data for ajax 
-
                 formData = new FormData();
                 formData.append('convert_from', $(form).find('[name="convert_from"]').val());
                 formData.append('from_currency', $(form).find('[name="from_currency"]').val());
@@ -155,11 +154,18 @@
                     processData: false,
                     contentType: false,
                     success: function(response) {
+                        // Update the result field
                         $(form).find('[name="convert_to"]').val(response.result);
+                        
+                        // Remove the first entry of history if the number of rows is 5
                         $('table#history-table tr:nth-child(5)').siblings('tr:first-child').remove();
+
+                        // Add new history row
                         $(table_last_row).after('<tr><td>'+formData.get('from_currency')+'</td><td>'+formData.get('convert_from')+'</td><td>'+response.result+'</td><td>'+formData.get('to_currency')+'</td></tr>');
                     }
                 });
+
+                // Make sure the form submisison does not happen
                 return false;
             });
 
