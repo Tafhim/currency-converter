@@ -20,10 +20,10 @@ class Application_Form_RateConverter extends Zend_Form
         $submitButton = new Zend_Form_Element_Submit('Submit');
 
         // Add all the elements to the form
-        $this->addElement($convertFromValue);
         $this->addElement($fromCurrency);
-        $this->addElement($toCurrency);
+        $this->addElement($convertFromValue);
         $this->addElement($convertToValue);
+        $this->addElement($toCurrency);
         $this->addElement($submitButton);
     }
 

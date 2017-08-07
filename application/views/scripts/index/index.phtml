@@ -1,4 +1,13 @@
 <style>
+    /*
+        Import fonts
+    */
+    @import url('https://fonts.googleapis.com/css?family=PT+Sans|Source+Sans+Pro');
+
+    body {
+        font-family: 'Source Sans Pro', sans-serif;
+    }
+
     a:link,
     a:visited
     {
@@ -47,16 +56,53 @@
     }
     table#history-table {
         text-align: center;
-        width: 30%;
-        margin: 0 35%;
+        width: 60%;
+        max-width: 1024px;
+        margin: 0 auto;
+    }
+
+    table#history-table td:first-child, table#history-table th:first-child {
+        text-align: left;
+        margin-left: 10%
+    }
+
+    table#history-table td:last-child, table#history-table th:last-child {
+        text-align: right;
+        margin-right: 10%;
     }
 
     div.converter-container {
-        margin: 0 35%;
-        width: 30%;
+        width: 60%;
+        max-width: 1024px;
+        margin: 0 auto;
     }
-    div.converter-container {
-        
+    div.converter-container form dl > dt {
+        display: none;
+    } 
+    div.converter-container form {
+        text-align: center;
+    }
+    div.converter-container form dl > * {
+        display: inline-block;
+    }
+    div.converter-container form dd {
+        margin: 0 0;
+    }
+    /* Set the input field widths so that they fit at the center */
+    div.converter-container form dd:nth-child(4), div.converter-container form dd:nth-child(6) {
+        width: 30%;
+        margin: 0 5px;
+    }
+    div.converter-container form dd:nth-child(4) input, div.converter-container form dd:nth-child(6) input {
+        width: 100%;
+    }
+    div.converter-container form dd:nth-child(2) {
+        width: 15%;
+        text-align: left;
+    } 
+    div.converter-container form dd:nth-child(8) {
+        width: 15%;
+        text-align: right;
     }
 </style>
 
