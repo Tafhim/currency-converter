@@ -1,10 +1,70 @@
-var form = 'form#currency-converter';
 (function($) {
+    // Target form identifier
+    var form = 'form#currency-converter';
+
+    // Extending the jquery module to add our validation libraries
+    $.fn.extend({
+        checkForValidCurrencyCode: function() {
+            $currency_codes = ["AED","AFN","ALL","AMD","ANG","AOA","ARS","AUD","AWG","AZN","BAM","BBD","BDT","BGN","BHD","BIF","BMD","BND","BOB","BOV","BRL","BSD","BTN","BWP","BYR","BZD","CAD","CDF","CHE","CHF","CHW","CLF","CLP","CNY","COP","COU","CRC","CUC","CUP","CVE","CZK","DJF","DKK","DOP","DZD","EGP","ERN","ETB","EUR","FJD","FKP","GBP","GEL","GHS","GIP","GMD","GNF","GTQ","GYD","HKD","HNL","HRK","HTG","HUF","IDR","ILS","INR","IQD","IRR","ISK","JMD","JOD","JPY","KES","KGS","KHR","KMF","KPW","KRW","KWD","KYD","KZT","LAK","LBP","LKR","LRD","LSL","LYD","MAD","MDL","MGA","MKD","MMK","MNT","MOP","MRO","MUR","MVR","MWK","MXN","MXV","MYR","MZN","NAD","NGN","NIO","NOK","NPR","NZD","OMR","PAB","PEN","PGK","PHP","PKR","PLN","PYG","QAR","RON","RSD","RUB","RWF","SAR","SBD","SCR","SDG","SEK","SGD","SHP","SLL","SOS","SRD","SSP","STD","SVC","SYP","SZL","THB","TJS","TMT","TND","TOP","TRY","TTD","TWD","TZS","UAH","UGX","USD","USN","UYI","UYU","UZS","VEF","VND","VUV","WST","XAF","XCD","XDR","XOF","XPF","XSU","XUA","YER","ZAR","ZMW","ZWL"];
+            if ( $currency_codes.indexOf( this.val() ) != -1 )
+                return true;
+
+            // since the form is not valid we are giving it a class to inidicate the error
+            $(this).addClass('invalid-input');
+
+            return false;
+        },
+        checkForValidNumbers: function() {
+            // first check if the field is a disabled field
+            if ( $(this).is(':disabled') ) return true;
+
+            $number = this.val();
+            $is_valid = (!$.isArray( $number ) && ($number - parseFloat( $number ) + 1) >= 0);
+
+            if ( !$is_valid )
+                $(this).addClass('invalid-input');
+
+            return $is_valid;
+        },
+        validateConverterInput: function() {
+            // initialization of final result
+            finalResult = true;
+
+            // find the elements we want to validate
+            $selectElements = this.find('select');
+            $textElements = this.find('input[type="text"]');
+
+            // validate select elements (currecy codes)
+            $selectElements.each(function(){
+                finalResult &= $(this).checkForValidCurrencyCode();
+            });
+
+            // validate input elements (values)
+            $textElements.each(function() {
+                finalResult &= $(this).checkForValidNumbers();
+            });
+
+            return finalResult;
+        }
+    });
+
+    // Event bindings for the form
     $(document).ready(function($) {
+        // remove the invalid markers
+        $(document).on('click', form, function(evt) {
+            $(form + ' *').removeClass('invalid-input');
+        });
+
         // Call the api for currenty rates
         $(document).on('submit', form, function(evt) {
             // Stop the default request behavior
             evt.preventDefault();
+
+            formIsValid = $(form).validateConverterInput();
+
+            // this should be removed
+            if ( !formIsValid )
+                return false;
 
             // Get all the form data for ajax 
             formData = new FormData();
