@@ -83,6 +83,14 @@
                 processData: false,
                 contentType: false,
                 success: function(response) {
+                    // Validate if response is correct
+                    if ( ! response.hasOwnProperty('result') )
+                        alert('Conversion failed');
+                    
+                    // Check if the result is numeric
+                    if ( ! $.isNumeric(response.result) )
+                        alert('Convesion failed');
+
                     // Update the result field
                     $(form).find('[name="convert_to"]').val(response.result);
                     
@@ -92,6 +100,8 @@
                     // Add new history row
                     $(table_last_row).after('<tr><td>'+formData.get('from_currency')+'</td><td>'+formData.get('convert_from')+'</td><td>'+response.result+'</td><td>'+formData.get('to_currency')+'</td></tr>');
                 }
+            }).fail(function(response, status, error) {
+                alert('Server error!');
             });
 
             // Make sure the form submisison does not happen
