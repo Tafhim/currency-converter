@@ -21,7 +21,16 @@ class RateController extends Zend_Controller_Action
     public function convertAction()
     {
         // Generate the request fetcher object
-        $request = new Zend_Controller_Request_Http();
+        $request = $this->getRequest();
+        
+        // Validate the form for CSRF
+        $form = new Application_Form_RateConverter();
+        if ( ! $form->verifyCSRF( $request ) ) {
+            $this->view->request = $request->getPost();
+            $this->view->error = 'Invalid conversion request';
+            $this->view->message = 'CSRF authentication failed';
+            return;
+        }
         
         // Get the request parameters
         $convert_from = $request->getPost('convert_from');

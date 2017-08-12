@@ -71,6 +71,7 @@
             formData.append('convert_from', $(form).find('[name="convert_from"]').val());
             formData.append('from_currency', $(form).find('[name="from_currency"]').val());
             formData.append('to_currency', $(form).find('[name="to_currency"]').val());
+            formData.append('csrf_token', $(form).find('[name="csrf_token"]').val());
 
             // Table for history
             table_last_row = 'table#history-table tr:last';
@@ -83,13 +84,25 @@
                 processData: false,
                 contentType: false,
                 success: function(response) {
+                    // Validate if the response has no error
+                    if ( response.hasOwnProperty('error') ) {
+                        alert(response.message);
+                        console.log( response.request );
+                        return false;
+                    }
+
                     // Validate if response is correct
-                    if ( ! response.hasOwnProperty('result') )
+                    if ( ! response.hasOwnProperty('result') ) {
                         alert('Conversion failed');
+                        return false;
+                    }
+                        
                     
                     // Check if the result is numeric
-                    if ( ! $.isNumeric(response.result) )
+                    if ( ! $.isNumeric(response.result) ) {
                         alert('Convesion failed');
+                        return false;
+                    }
 
                     // Update the result field
                     $(form).find('[name="convert_to"]').val(response.result);
