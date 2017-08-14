@@ -45,9 +45,9 @@ class Application_Form_RateConverter extends Zend_Form
             $csrf_token_authspace = new Zend_Session_Namespace('csrf_token');
             $csrf_token_authspace->setExpirationSeconds(3600);
             $csrf_token_authspace->csrf_token = md5(uniqid());
-        } else {
-            $csrf_token_authspace = Zend_Session::namespaceGet('csrf_token');
         }
+
+        $csrf_token_authspace = Zend_Session::namespaceGet('csrf_token');
 
         return $csrf_token_authspace['csrf_token'];
     }
