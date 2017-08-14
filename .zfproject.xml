@@ -33,12 +33,10 @@
       <modelsDirectory>
         <dbTableDirectory>
           <dbTableFile dbTableName="History"/>
-          <dbTableFile dbTableName="Rate"/>
         </dbTableDirectory>
         <modelFile modelName="HistoryMapper"/>
         <modelFile modelName="History"/>
         <modelFile modelName="RateMapper"/>
-        <modelFile modelName="Rate"/>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <servicesDirectory enabled="false"/>
