@@ -49,9 +49,6 @@ div.converter-container form dl > dt {
 div.converter-container form {
     text-align: center;
 }
-div.converter-container form .invalid-input {
-    border-color: red;
-}
 div.converter-container form dl > * {
     display: inline-block;
 }
@@ -63,8 +60,16 @@ div.converter-container form dd:nth-child(4), div.converter-container form dd:nt
     width: 30%;
     margin: 0 15px;
 }
+div.converter-container form dd:nth-child(4) input.invalid-input, div.converter-container form dd:nth-child(6) input.invalid-input {
+    border: 1px solid red;
+}
 div.converter-container form dd:nth-child(4) input, div.converter-container form dd:nth-child(6) input {
     width: 100%;
+    border-radius: 25px;
+    height: 20px;
+    outline: none;
+    padding: 5px 10px;
+    border: 1px solid #aaaaaa;
 }
 div.converter-container form dd:nth-child(2) {
     width: 15%;
@@ -78,4 +83,13 @@ div.converter-container .big-button {
     width: 100px;
     height: 50px;
     margin: 50px 100px;
+    background: #3f3f3f;
+    border-radius: 25px;
+    border: 1px solid #efefef;
+    color: #fff;
+    font-weight: bold;
+}
+div.converter-container .big-button:hover {
+    background: #efefef;
+    color: #3f3f3f;
 }
