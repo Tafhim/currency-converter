@@ -18,8 +18,10 @@ class Application_Form_RateConverter extends Zend_Form
         $convertToValue = new Zend_Form_Element_Text('convert_to');
         $convertToValue->setAttrib('disabled', "disabled");
         $submitButton = new Zend_Form_Element_Submit('Convert');
+        $submitButton->setAttrib('class', 'big-button');
         $swapButton = new Zend_Form_Element_Button('Swap');
-        $swapButton->setAttrib('id', 'converter-swap');
+        $swapButton->setAttrib('id', 'converter-swap')
+                   ->setAttrib('class', 'big-button');
         
         // Create the csrf element
         $csrfToken = new Zend_Form_Element_Hidden('csrf_token');
