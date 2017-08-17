@@ -55,6 +55,14 @@ div.converter-container form dl > * {
 div.converter-container form dd {
     margin: 0 0;
 }
+
+div.converter-container form select {
+    height: auto;
+    width: 100px;
+    border-radius: 15px;
+    padding: 5px 10px;
+}
+
 /* Set the input field widths so that they fit at the center */
 div.converter-container form dd:nth-child(4), div.converter-container form dd:nth-child(6) {
     width: 30%;
@@ -64,7 +72,7 @@ div.converter-container form dd:nth-child(4) input.invalid-input, div.converter-
     border: 1px solid red;
 }
 div.converter-container form dd:nth-child(4) input, div.converter-container form dd:nth-child(6) input {
-    width: 100%;
+    width: 80%;
     border-radius: 25px;
     height: 20px;
     outline: none;
