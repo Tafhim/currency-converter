@@ -38,7 +38,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $front = $this->getResource( 'FrontController' );
         $front->registerPlugin( new Zend_Controller_Plugin_ErrorHandler() );
         $error = $front->getPlugin ('Zend_Controller_Plugin_ErrorHandler');
-        $error->setErrorHandlerController('index');
+        $error->setErrorHandlerController('error');
 
         if (PHP_SAPI == 'cli')
         {
