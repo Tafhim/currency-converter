@@ -3,23 +3,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title>Currency conversion application</title>
-
-  <noscript id="deferred-styles">
-    <link rel="stylesheet" href="css/style.css"/>
-  </noscript>
-  <script>
-    var loadDeferredStyles = function() {
-      var addStylesNode = document.getElementById("deferred-styles");
-      var replacement = document.createElement("div");
-      replacement.innerHTML = addStylesNode.textContent;
-      document.body.appendChild(replacement)
-      addStylesNode.parentElement.removeChild(addStylesNode);
-    };
-    var raf = requestAnimationFrame || mozRequestAnimationFrame ||
-      webkitRequestAnimationFrame || msRequestAnimationFrame;
-    if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
-    else window.addEventListener('load', loadDeferredStyles);
-  </script>
+  <link rel="stylesheet" href="css/style.css"/>
   <script defer type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
   <script defer type="text/javascript" src="js/script.js"></script>
 
