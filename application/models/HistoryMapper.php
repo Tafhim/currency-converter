@@ -75,21 +75,8 @@ class Application_Model_HistoryMapper
         $selection = $this->getDbTable()->select()->order('created DESC')->limit(5,0);
         $resultSet = $this->getDbTable()->fetchAll($selection);
 
-        // Map the result in array
-        $entries   = array();
-        foreach ($resultSet as $row) {
-            $entry = new Application_Model_History();
-            $entry->setId($row->id)
-                ->setFrom($row->from)
-                ->setTo($row->to)
-                ->setFromAmount($row->from_amount)
-                ->setToAmount($row->to_amount)
-                ->setCreated($row->created);
-            $entries[] = $entry;
-        }
-
         // return in reverse order to have the latest entry at the bottom
-        return array_reverse($entries);
+        return array_reverse($resultSet->toArray());
     }
 
 }
