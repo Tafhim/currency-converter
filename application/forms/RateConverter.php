@@ -27,7 +27,6 @@ class Application_Form_RateConverter extends Zend_Form
         $csrfToken = new Zend_Form_Element_Hidden('csrf_token');
         $csrfToken->setValue($this->getCSRF())
                   ->setRequired(true)
-                  ->removeDecorator('HtmlTag')
                   ->removeDecorator('label');
 
         // Add all the elements to the form
