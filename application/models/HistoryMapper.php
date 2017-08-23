@@ -51,7 +51,10 @@ class Application_Model_HistoryMapper
     public function fetchAll()
     {
         // Find all
-        $selection = $this->getDbTable()->select()->order('created DESC')->limit(5,0);
+        $selection = $this->getDbTable()->select()
+                                ->from(array('h' => 'history'), array('from', 'to', 'from_amount', 'to_amount'))
+                                ->order('created DESC')
+                                ->limit(5,0);
         $resultSet = $this->getDbTable()->fetchAll($selection);
 
         // return in reverse order to have the latest entry at the bottom
