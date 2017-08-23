@@ -47,27 +47,6 @@ class Application_Model_HistoryMapper
         }
     }
 
-    // Return a history element based on ID
-    public function find($id, Application_Model_History $history)
-    {
-        // Find using id
-        $result = $this->getDbTable()->find($id);
-        if (0 == count($result)) {
-            return;
-        }
-        $row = $result->current();
-
-        // Map the result
-        $history->setId($row->id)
-             ->setFrom($row->from)
-             ->setTo($row->to)
-             ->setFromAmount($row->from_amount)
-             ->setToAmount($row->to_amount)
-             ->setCreated($row->created);
-
-        return $history;
-    }
-
     // Return all the history elements in the DB
     public function fetchAll()
     {
