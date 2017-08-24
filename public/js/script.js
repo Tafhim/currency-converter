@@ -1,4 +1,6 @@
 (function($) {
+    'use strict'
+    
     // Target form identifier
     var form = 'form#currency-converter';
 
