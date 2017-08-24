@@ -69,18 +69,32 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 
     protected function _initCache()
     {
-        $ratesCacheFrontEndOptions = array(
+        $rateCacheFrontEndOptions = array(
             'ignore_missing_master_files' => true,
             'debug_header' => true,
             'lifetime' => 3600,
-            'master_files' => array('testMasterFile'),
+            'master_files' => array('converterRateCacheMasterFile'),
             'automatic_serialization' => true,
         );
-        $ratesCacheBackEndOptions = array(
+        $rateCacheBackEndOptions = array(
             'cache_dir' => '/tmp/'
         );
-        $ratesCache = Zend_Cache::factory('File', 'File', $ratesCacheFrontEndOptions, $ratesCacheBackEndOptions);
-        Zend_Registry::set('RateCache', $ratesCache);
+        $rateCache = Zend_Cache::factory('File', 'File', $rateCacheFrontEndOptions, $rateCacheBackEndOptions);
+        Zend_Registry::set('RateCache', $rateCache);
+
+
+        $formCacheFrontEndOptions = array(
+            'ignore_missing_master_files' => true,
+            'debug_header' => true,
+            'lifetime' => 3600,
+            'master_files' => array('/tmp/zend_cache---RateCache'),
+            'automatic_serialization' => true,
+        );
+        $formCacheBackEndOptions = array(
+            'cache_dir' => '/tmp/'
+        );
+        $formCache = Zend_Cache::factory('File', 'File', $formCacheFrontEndOptions, $formCacheBackEndOptions);
+        Zend_Registry::set('FormCache', $formCache);
     }
 
 }

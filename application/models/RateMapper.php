@@ -7,8 +7,7 @@ class Application_Model_RateMapper
         // Caching instance
         $cache = Zend_Registry::get('RateCache');
 
-
-        $rate_cache_id = 'RatesFromAPICache';
+        $rate_cache_id = 'RateCache';
 
         // Check if the cache is fresh enough, if so use it
         if ( ($cache_data = $cache->load($rate_cache_id)) === false ) {
