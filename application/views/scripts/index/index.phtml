@@ -1,20 +1,7 @@
 <div class="converter-content">
-    <?php if ( count($this->history) ) { ?>
+    <?php if ( count($this->latestHistory) ) { ?>
     <div class="history-container">
-        <table id="history-table">
-            <thead>
-                <tr>
-                    <th>From currency</th><th>From</th><th>To</th><th>To currency</th>
-                </tr>
-            </thead>
-            <tbody>
-            <?php foreach ($this->history as $history) { ?>
-                <tr>
-                    <td><?php echo $history['from']; ?></td><td><?php echo $history['from_amount']; ?></td><td><?php echo $history['to_amount']; ?></td><td><?php echo $history['to']; ?></td>
-                </tr>
-            <?php } ?>
-            </tbody>
-        </table>
+        <?php echo $this->latestHistory; ?>
     </div>
     <?php } ?>
     <div class="converter-container">
